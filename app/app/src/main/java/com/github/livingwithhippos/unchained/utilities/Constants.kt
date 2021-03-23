@@ -77,3 +77,16 @@ val loadingStatusList = listOf(
     "uploading"
 )
 
+/**
+ * Oriondroid
+ */
+
+// key for testing the APIS
+const val ORIONDROID_OPEN_API_KEY ="TESTTESTTESTTESTTESTTESTTESTTEST"
+// App key registered on Oriondroid forUnchained
+const val ORIONDROID_UNCHAINED_APP_KEY="WQPHP4JX8MRPCCMXUDFKGHP9KJ6PMHGN"
+
+const val BASE_ORIONDROID_URL = "https://api.orionoid.com"
+
+
+

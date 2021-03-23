@@ -1,6 +1,9 @@
 package com.github.livingwithhippos.unchained.di
 
 import com.github.livingwithhippos.unchained.data.model.EmptyBodyInterceptor
+import com.github.livingwithhippos.unchained.data.oriondroid.remote.AppDetailsApi
+import com.github.livingwithhippos.unchained.data.oriondroid.remote.AppDetailsHelper
+import com.github.livingwithhippos.unchained.data.oriondroid.remote.AppDetailsHelperImpl
 import com.github.livingwithhippos.unchained.data.remote.AuthApiHelper
 import com.github.livingwithhippos.unchained.data.remote.AuthApiHelperImpl
 import com.github.livingwithhippos.unchained.data.remote.AuthenticationApi
@@ -26,6 +29,7 @@ import com.github.livingwithhippos.unchained.data.remote.VariousApi
 import com.github.livingwithhippos.unchained.data.remote.VariousApiHelper
 import com.github.livingwithhippos.unchained.data.remote.VariousApiHelperImpl
 import com.github.livingwithhippos.unchained.utilities.BASE_AUTH_URL
+import com.github.livingwithhippos.unchained.utilities.BASE_ORIONDROID_URL
 import com.github.livingwithhippos.unchained.utilities.BASE_URL
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
@@ -183,5 +187,38 @@ object ApiFactory {
     @Provides
     @Singleton
     fun provideVariousApiHelper(apiHelper: VariousApiHelperImpl): VariousApiHelper =
+        apiHelper
+
+    /**
+     * ORIONDROID
+     */
+
+    @Provides
+    @Singleton
+    @OriondroidRetrofit
+    fun oriondroidRetrofit(okHttpClient: OkHttpClient): Retrofit {
+
+        val moshi = Moshi.Builder()
+            .addLast(KotlinJsonAdapterFactory())
+            .build()
+
+        return Retrofit.Builder()
+            .client(okHttpClient)
+            .baseUrl(BASE_ORIONDROID_URL)
+            .addConverterFactory(MoshiConverterFactory.create(moshi))
+            .build()
+    }
+
+
+    // app details api injection
+    @Provides
+    @Singleton
+    fun provideOrionAppDetailsApi(@OriondroidRetrofit retrofit: Retrofit): AppDetailsApi {
+        return retrofit.create(AppDetailsApi::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideOrionAppDetailsApiHelper(apiHelper: AppDetailsHelperImpl): AppDetailsHelper =
         apiHelper
 }

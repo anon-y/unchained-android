@@ -13,6 +13,10 @@ annotation class ApiRetrofit
 
 @Qualifier
 @Retention(AnnotationRetention.BINARY)
+annotation class OriondroidRetrofit
+
+@Qualifier
+@Retention(AnnotationRetention.BINARY)
 annotation class TorrentNotification
 
 @Qualifier

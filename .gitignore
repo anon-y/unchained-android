@@ -89,3 +89,4 @@ app/.idea/*
 app/generated-apks/*
 app/signingkey.properties
 *.pfk
+app/app/src/main/java/com/github/livingwithhippos/unchained/utilities/Temp.kt
