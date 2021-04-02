@@ -14,6 +14,10 @@ import android.net.Uri
 import android.os.Build
 import android.os.VibrationEffect
 import android.os.Vibrator
+import android.text.SpannableString
+import android.text.Spanned
+import android.text.style.ForegroundColorSpan
+import android.text.style.UnderlineSpan
 import android.util.TypedValue
 import android.view.View
 import android.view.WindowInsetsController
@@ -109,6 +113,19 @@ fun Fragment.openExternalWebPage(url: String, showErrorToast: Boolean = true): B
 
 
     return false
+}
+
+/**
+ * Generates a spannable which looks like a web link
+ * @param context: the context used to get the current secondary color used for the link
+ * @return a themed [SpannableString]
+ */
+fun String.makeSpannableLink(context: Context): SpannableString {
+    val link = SpannableString(this)
+    link.setSpan(UnderlineSpan(), 0, link.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+    val colorSecondary = context.getThemeColor(R.attr.colorSecondary)
+    link.setSpan(ForegroundColorSpan(colorSecondary), 0, link.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+    return link
 }
 
 

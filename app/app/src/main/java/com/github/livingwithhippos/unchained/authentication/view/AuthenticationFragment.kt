@@ -21,6 +21,7 @@ import com.github.livingwithhippos.unchained.utilities.EventObserver
 import com.github.livingwithhippos.unchained.utilities.extension.copyToClipboard
 import com.github.livingwithhippos.unchained.utilities.extension.getClipboardText
 import com.github.livingwithhippos.unchained.utilities.extension.getThemeColor
+import com.github.livingwithhippos.unchained.utilities.extension.makeSpannableLink
 import com.github.livingwithhippos.unchained.utilities.extension.openExternalWebPage
 import com.github.livingwithhippos.unchained.utilities.extension.showToast
 import com.google.android.material.textfield.TextInputEditText
@@ -119,10 +120,7 @@ class AuthenticationFragment : UnchainedFragment(), ButtonListener {
 
         sb.append(getString(R.string.please_visit))
 
-        val link = SpannableString(getString(R.string.this_link))
-        link.setSpan(UnderlineSpan(), 0, link.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
-        val colorSecondary = requireContext().getThemeColor(R.attr.colorSecondary)
-        link.setSpan(ForegroundColorSpan(colorSecondary), 0, link.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+        val link = getString(R.string.this_link).makeSpannableLink(requireContext())
         sb.append(link)
 
         sb.append(getString(R.string.to_authenticate))
