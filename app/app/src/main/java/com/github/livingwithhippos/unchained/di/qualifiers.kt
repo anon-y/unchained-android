@@ -13,7 +13,7 @@ annotation class ApiRetrofit
 
 @Qualifier
 @Retention(AnnotationRetention.BINARY)
-annotation class OriondroidRetrofit
+annotation class OrionRetrofit
 
 @Qualifier
 @Retention(AnnotationRetention.BINARY)

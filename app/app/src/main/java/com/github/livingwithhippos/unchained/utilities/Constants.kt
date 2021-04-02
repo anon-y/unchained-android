@@ -78,15 +78,15 @@ val loadingStatusList = listOf(
 )
 
 /**
- * Oriondroid
+ * Orion
  */
 
 // key for testing the APIS
-const val ORIONDROID_OPEN_API_KEY ="TESTTESTTESTTESTTESTTESTTESTTEST"
+const val ORION_OPEN_API_KEY ="TESTTESTTESTTESTTESTTESTTESTTEST"
 // App key registered on Oriondroid forUnchained
-const val ORIONDROID_UNCHAINED_APP_KEY="WQPHP4JX8MRPCCMXUDFKGHP9KJ6PMHGN"
+const val ORION_UNCHAINED_APP_KEY="WQPHP4JX8MRPCCMXUDFKGHP9KJ6PMHGN"
 
-const val BASE_ORIONDROID_URL = "https://api.orionoid.com"
+const val BASE_ORION_URL = "https://api.orionoid.com"
 
 
 

@@ -1,6 +1,6 @@
-package com.github.livingwithhippos.unchained.data.oriondroid.remote
+package com.github.livingwithhippos.unchained.data.orion.remote
 
-import com.github.livingwithhippos.unchained.data.oriondroid.model.AppDetails
+import com.github.livingwithhippos.unchained.data.orion.model.AppDetails
 import retrofit2.Response
 import javax.inject.Inject
 
