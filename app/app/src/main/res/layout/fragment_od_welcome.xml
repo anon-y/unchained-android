@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+</data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".search.view.ODWelcomeFragment">
+
+        <TextView
+            android:id="@+id/tvWelcome"
+            style="@style/TextAppearance.UnchainedTheme.Body1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="25dp"
+            android:layout_marginEnd="25dp"
+            android:textAlignment="center"
+            android:justificationMode="inter_word"
+            android:text="@string/od_welcome_message"
+            app:layout_constraintBottom_toTopOf="@+id/bOpenLink"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed" />
+
+        <Button
+            android:id="@+id/bOpenLink"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="@string/open_link"
+            app:layout_constraintBottom_toTopOf="@id/tfApiKey"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvWelcome" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tfApiKey"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:focusable="true"
+            android:hint="@string/api_key"
+            android:importantForAutofill="no"
+            android:minWidth="200dp"
+            app:endIconMode="clear_text"
+            app:layout_constraintBottom_toTopOf="@+id/bCheckKey"
+            app:layout_constraintEnd_toStartOf="@id/bPasteApiKey"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="@+id/tvWelcome"
+            app:layout_constraintTop_toBottomOf="@id/bOpenLink">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/tiPrivateCode"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:focusable="true"
+                android:singleLine="true" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <ImageButton
+            android:id="@+id/bPasteApiKey"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginStart="10dp"
+            android:background="@drawable/icon_paste"
+            android:contentDescription="@string/paste"
+            app:layout_constraintBottom_toBottomOf="@id/tfApiKey"
+            app:layout_constraintEnd_toEndOf="@+id/tvWelcome"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@id/tfApiKey"
+            app:layout_constraintTop_toTopOf="@id/tfApiKey" />
+
+        <Button
+            android:id="@+id/bCheckKey"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="@string/check_key"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tfApiKey" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

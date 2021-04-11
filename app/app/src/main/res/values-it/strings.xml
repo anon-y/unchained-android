@@ -227,4 +227,8 @@
     <string name="host_match_not_found">Nessun host compatibile trovato. Aggiorna gli host dalle impostazioni se necessario.</string>
     <string name="refreshing_token">Aggiornando autenticazione, riprova tra poco</string>
     <string name="black_and_white">Bianco e nero</string>
+    <string name="od_welcome_message" >Orion è un indicizzatore di files dalla rete torrent, di hosting e Usenet. Una chiave API anche gratuita è necessaria per utilizzare il servizio. Per la chiave API ed altre informazioni registrarsi su orionoid.com</string>
+    <string name="search_files">Cerca Files</string>
+    <string name="api_key">Chiave API</string>
+    <string name="check_key">Controlla Chiave</string>
 </resources>

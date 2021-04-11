@@ -26,7 +26,7 @@ class SearchFragment : UnchainedFragment() {
             viewModel.fetchAppDetails()
         }
 
-        viewModel.resultLiveData.observe(viewLifecycleOwner, EventObserver { details ->
+        viewModel.appDetailsLiveData.observe(viewLifecycleOwner, EventObserver { details ->
             details?.let {
                 val text = (it.name + " " + it.appData.description)
                 searchBinding.text.text = text

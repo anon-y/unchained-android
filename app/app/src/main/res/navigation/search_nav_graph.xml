@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/search_dest"
-        android:name="com.github.livingwithhippos.unchained.search.view.SearchFragment"
-        android:label="@string/search_torrents"
+        android:name="com.github.livingwithhippos.unchained.search.view.ODWelcomeFragment"
+        android:label="@string/search_files"
         tools:layout="@layout/fragment_search" />
 </navigation>

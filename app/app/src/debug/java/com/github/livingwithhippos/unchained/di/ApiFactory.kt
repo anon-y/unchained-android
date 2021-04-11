@@ -4,6 +4,9 @@ import com.github.livingwithhippos.unchained.data.model.EmptyBodyInterceptor
 import com.github.livingwithhippos.unchained.data.orion.remote.AppDetailsApi
 import com.github.livingwithhippos.unchained.data.orion.remote.AppDetailsHelper
 import com.github.livingwithhippos.unchained.data.orion.remote.AppDetailsHelperImpl
+import com.github.livingwithhippos.unchained.data.orion.remote.StreamSearchHelper
+import com.github.livingwithhippos.unchained.data.orion.remote.StreamSearchApi
+import com.github.livingwithhippos.unchained.data.orion.remote.StreamSearchHelperImpl
 import com.github.livingwithhippos.unchained.data.remote.AuthApiHelper
 import com.github.livingwithhippos.unchained.data.remote.AuthApiHelperImpl
 import com.github.livingwithhippos.unchained.data.remote.AuthenticationApi
@@ -220,5 +223,17 @@ object ApiFactory {
     @Provides
     @Singleton
     fun provideOrionAppDetailsApiHelper(apiHelper: AppDetailsHelperImpl): AppDetailsHelper =
+        apiHelper
+
+    // stream search api injection
+    @Provides
+    @Singleton
+    fun provideOrionStreamSearchApi(@OrionRetrofit retrofit: Retrofit): StreamSearchApi {
+        return retrofit.create(StreamSearchApi::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideOrionStreamSearchApiHelper(apiHelper: StreamSearchHelperImpl): StreamSearchHelper =
         apiHelper
 }

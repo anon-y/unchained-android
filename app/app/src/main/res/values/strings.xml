@@ -435,5 +435,8 @@
     <string name="host_match_not_found">No matching host found. Refresh hosts from settings if needed.</string>
     <string name="refreshing_token">Refreshing authentication, please retry in a bit</string>
 	<string name="black_and_white">Black and white</string>
-    <string name="search_torrents">Search Torrents</string>
+    <string name="search_files">Search Files</string>
+    <string name="od_welcome_message">Orion is a file indexer for the Torrent, Hosting and Usenet networks. An API key is required for its use and a free plan is available. For the API key and more information check orionoid.com</string>
+    <string name="api_key">API Key</string>
+    <string name="check_key">Check Key</string>
 </resources>

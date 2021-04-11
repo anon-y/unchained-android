@@ -88,5 +88,7 @@ const val ORION_UNCHAINED_APP_KEY="WQPHP4JX8MRPCCMXUDFKGHP9KJ6PMHGN"
 
 const val BASE_ORION_URL = "https://api.orionoid.com"
 
+const val ORION_HOME = "https://orionoid.com/"
+
 
 
