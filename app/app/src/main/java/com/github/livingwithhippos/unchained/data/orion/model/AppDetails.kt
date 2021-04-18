@@ -6,17 +6,17 @@ import com.squareup.moshi.JsonClass
 @JsonClass(generateAdapter = true)
 data class AppDetails(
     @Json(name = "data")
-    val appData: AppData,
+    val appData: ODAppData,
     @Json(name = "name")
     val name: String,
     @Json(name = "result")
-    val result: Result,
+    val result: ODResult,
     @Json(name = "version")
     val version: String
 )
 
 @JsonClass(generateAdapter = true)
-data class AppData(
+data class ODAppData(
     @Json(name = "description")
     val description: String,
     @Json(name = "id")
@@ -32,13 +32,13 @@ data class AppData(
     @Json(name = "status")
     val status: String,
     @Json(name = "time")
-    val time: AppTime,
+    val time: ODTime,
     @Json(name = "type")
     val type: String
 )
 
 @JsonClass(generateAdapter = true)
-data class Result(
+data class ODResult(
     @Json(name = "status")
     val status: String
 )
@@ -52,7 +52,7 @@ data class Popularity(
 )
 
 @JsonClass(generateAdapter = true)
-data class AppTime(
+data class ODTime(
     @Json(name = "added")
     val added: Int,
     @Json(name = "updated")

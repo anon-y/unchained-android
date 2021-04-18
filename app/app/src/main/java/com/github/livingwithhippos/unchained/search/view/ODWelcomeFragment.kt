@@ -1,19 +1,14 @@
 package com.github.livingwithhippos.unchained.search.view
 
 import android.os.Bundle
-import android.text.SpannableStringBuilder
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import com.github.livingwithhippos.unchained.R
 import com.github.livingwithhippos.unchained.databinding.FragmentOdWelcomeBinding
 import com.github.livingwithhippos.unchained.utilities.ORION_HOME
 import com.github.livingwithhippos.unchained.utilities.extension.getClipboardText
-import com.github.livingwithhippos.unchained.utilities.extension.isMagnet
-import com.github.livingwithhippos.unchained.utilities.extension.isWebUrl
-import com.github.livingwithhippos.unchained.utilities.extension.makeSpannableLink
 import com.github.livingwithhippos.unchained.utilities.extension.openExternalWebPage
 
 
@@ -21,9 +16,6 @@ import com.github.livingwithhippos.unchained.utilities.extension.openExternalWeb
  * A simple [Fragment] subclass.
  */
 class ODWelcomeFragment : Fragment() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,6 +30,10 @@ class ODWelcomeFragment : Fragment() {
 
         binding.bPasteApiKey.setOnClickListener {
             binding.tiPrivateCode.setText(getClipboardText(), TextView.BufferType.EDITABLE)
+        }
+
+        binding.bCheckKey.setOnClickListener {
+
         }
 
         // todo: controlla se c'è la chiave API e fai una chiamata per controllare se è valida
