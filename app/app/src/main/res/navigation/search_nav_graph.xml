@@ -9,5 +9,13 @@
         android:id="@+id/search_dest"
         android:name="com.github.livingwithhippos.unchained.search.view.ODWelcomeFragment"
         android:label="@string/search_files"
-        tools:layout="@layout/fragment_search" />
+        tools:layout="@layout/fragment_search" >
+        <action
+            android:id="@+id/action_search_dest_to_searchFragment"
+            app:destination="@id/searchFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="com.github.livingwithhippos.unchained.search.view.SearchFragment"
+        android:label="SearchFragment" />
 </navigation>

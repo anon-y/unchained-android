@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.github.livingwithhippos.unchained.R
 import com.github.livingwithhippos.unchained.databinding.FragmentOdWelcomeBinding
 import com.github.livingwithhippos.unchained.search.viewmodel.ODWelcomeViewModel
@@ -57,13 +58,26 @@ class ODWelcomeFragment : Fragment() {
         binding.bCheckKey.setOnClickListener {
             val code = binding.tiPrivateCode.text.toString()
             if (code.length > 10)
-                viewModel.checkCredentials(code)
+                viewModel.checkAndSaveCredentials(code)
             else
                 context?.showToast(R.string.invalid_token)
         }
 
+        setup()
+
         // metti un overlay sopra a questo fragment e poi toglilo se la chiave non c'è o non è valida
         // vai automaticamente all altro fragment se invece è valida
         return binding.root
+    }
+
+    private fun setup() {
+        // maybe an event is not needed, once we have the user we shouldn't come back to this screen
+        viewModel.userLiveData.observe(viewLifecycleOwner) {
+            // check user status?
+            it.getContentIfNotHandled()?.let {
+                val action = ODWelcomeFragmentDirections.actionSearchDestToSearchFragment()
+                findNavController().navigate(action)
+            }
+        }
     }
 }
