@@ -1,7 +1,15 @@
 package com.github.livingwithhippos.unchained.di
 
 import com.github.livingwithhippos.unchained.data.model.EmptyBodyInterceptor
-import com.github.livingwithhippos.unchained.data.orion.remote.*
+import com.github.livingwithhippos.unchained.data.orion.remote.AppDetailsApi
+import com.github.livingwithhippos.unchained.data.orion.remote.AppDetailsHelper
+import com.github.livingwithhippos.unchained.data.orion.remote.AppDetailsHelperImpl
+import com.github.livingwithhippos.unchained.data.orion.remote.ODVariousApi
+import com.github.livingwithhippos.unchained.data.orion.remote.ODVariousApiHelper
+import com.github.livingwithhippos.unchained.data.orion.remote.ODVariousApiHelperImpl
+import com.github.livingwithhippos.unchained.data.orion.remote.StreamSearchApi
+import com.github.livingwithhippos.unchained.data.orion.remote.StreamSearchHelper
+import com.github.livingwithhippos.unchained.data.orion.remote.StreamSearchHelperImpl
 import com.github.livingwithhippos.unchained.data.remote.AuthApiHelper
 import com.github.livingwithhippos.unchained.data.remote.AuthApiHelperImpl
 import com.github.livingwithhippos.unchained.data.remote.AuthenticationApi
@@ -243,4 +251,10 @@ object ApiFactory {
     @Singleton
     fun provideOrionVariousApiHelper(apiHelper: ODVariousApiHelperImpl): ODVariousApiHelper =
         apiHelper
+
+    /*********************************/
+    // N.B. all updates to this code //
+    // also need to be ported to the //
+    // release build flavor version. //
+    /*********************************/
 }

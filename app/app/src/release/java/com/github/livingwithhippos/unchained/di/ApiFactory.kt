@@ -1,6 +1,15 @@
 package com.github.livingwithhippos.unchained.di
 
 import com.github.livingwithhippos.unchained.data.model.EmptyBodyInterceptor
+import com.github.livingwithhippos.unchained.data.orion.remote.AppDetailsApi
+import com.github.livingwithhippos.unchained.data.orion.remote.AppDetailsHelper
+import com.github.livingwithhippos.unchained.data.orion.remote.AppDetailsHelperImpl
+import com.github.livingwithhippos.unchained.data.orion.remote.ODVariousApi
+import com.github.livingwithhippos.unchained.data.orion.remote.ODVariousApiHelper
+import com.github.livingwithhippos.unchained.data.orion.remote.ODVariousApiHelperImpl
+import com.github.livingwithhippos.unchained.data.orion.remote.StreamSearchApi
+import com.github.livingwithhippos.unchained.data.orion.remote.StreamSearchHelper
+import com.github.livingwithhippos.unchained.data.orion.remote.StreamSearchHelperImpl
 import com.github.livingwithhippos.unchained.data.remote.AuthApiHelper
 import com.github.livingwithhippos.unchained.data.remote.AuthApiHelperImpl
 import com.github.livingwithhippos.unchained.data.remote.AuthenticationApi
@@ -26,6 +35,7 @@ import com.github.livingwithhippos.unchained.data.remote.VariousApi
 import com.github.livingwithhippos.unchained.data.remote.VariousApiHelper
 import com.github.livingwithhippos.unchained.data.remote.VariousApiHelperImpl
 import com.github.livingwithhippos.unchained.utilities.BASE_AUTH_URL
+import com.github.livingwithhippos.unchained.utilities.BASE_ORION_URL
 import com.github.livingwithhippos.unchained.utilities.BASE_URL
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
@@ -175,5 +185,62 @@ object ApiFactory {
     @Provides
     @Singleton
     fun provideVariousApiHelper(apiHelper: VariousApiHelperImpl): VariousApiHelper =
+        apiHelper
+
+    /**
+     * ORION
+     */
+
+    @Provides
+    @Singleton
+    @OrionRetrofit
+    fun orionRetrofit(okHttpClient: OkHttpClient): Retrofit {
+
+        val moshi = Moshi.Builder()
+            .addLast(KotlinJsonAdapterFactory())
+            .build()
+
+        return Retrofit.Builder()
+            .client(okHttpClient)
+            .baseUrl(BASE_ORION_URL)
+            .addConverterFactory(MoshiConverterFactory.create(moshi))
+            .build()
+    }
+
+
+    // app details api injection
+    @Provides
+    @Singleton
+    fun provideOrionAppDetailsApi(@OrionRetrofit retrofit: Retrofit): AppDetailsApi {
+        return retrofit.create(AppDetailsApi::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideOrionAppDetailsApiHelper(apiHelper: AppDetailsHelperImpl): AppDetailsHelper =
+        apiHelper
+
+    // stream search api injection
+    @Provides
+    @Singleton
+    fun provideOrionStreamSearchApi(@OrionRetrofit retrofit: Retrofit): StreamSearchApi {
+        return retrofit.create(StreamSearchApi::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideOrionStreamSearchApiHelper(apiHelper: StreamSearchHelperImpl): StreamSearchHelper =
+        apiHelper
+
+    // various Orion api injection
+    @Provides
+    @Singleton
+    fun provideOrionVariousApi(@OrionRetrofit retrofit: Retrofit): ODVariousApi {
+        return retrofit.create(ODVariousApi::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideOrionVariousApiHelper(apiHelper: ODVariousApiHelperImpl): ODVariousApiHelper =
         apiHelper
 }
