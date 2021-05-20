@@ -23,19 +23,30 @@ class ODWelcomeViewModel @Inject constructor(
 
     fun checkAndSaveCredentials(userApiKey: String){
         viewModelScope.launch {
-            val user = variousRepository.getUser(userApiKey)
-
-            if (user != null) {
-
-                if (user.result.status == "success")
-                    with(preferences.edit()) {
-                        putString(KEY_ORION_API, userApiKey)
-                        apply()
-                    }
-            }
+            val user = getUser(userApiKey)
+            if (user != null)
+                saveCredentials(userApiKey)
 
             userLiveData.postEvent(user)
         }
+    }
+
+    fun checkCurrentCredentials(): Boolean {
+        val key = preferences.getString(KEY_ORION_API, "") ?: ""
+        return key.length > 10
+    }
+
+    private fun saveCredentials(userApiKey: String) {
+        with(preferences.edit()) {
+            putString(KEY_ORION_API, userApiKey)
+            apply()
+        }
+    }
+
+    suspend fun getUser(userApiKey: String): ODUser? {
+        val user = variousRepository.getUser(userApiKey)
+
+        return user
     }
 
     companion object {

@@ -14,25 +14,38 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class SearchFragment : UnchainedFragment() {
 
+    private var _binding: FragmentSearchBinding? = null
+    val binding get() = _binding!!
+
     private val viewModel: SearchViewModel by viewModels()
+
+    override fun onDestroyView() {
+        _binding = null
+        super.onDestroyView()
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val searchBinding = FragmentSearchBinding.inflate(inflater, container, false)
+        _binding = FragmentSearchBinding.inflate(inflater, container, false)
 
-        searchBinding.button.setOnClickListener {
+        setup()
+
+        return binding.root
+    }
+
+    private fun setup() {
+
+        binding.button.setOnClickListener {
             viewModel.fetchAppDetails()
         }
 
         viewModel.appDetailsLiveData.observe(viewLifecycleOwner, EventObserver { details ->
             details?.let {
                 val text = (it.name + " " + it.appData.description)
-                searchBinding.text.text = text
+                binding.text.text = text
             }
         })
-
-        return searchBinding.root
     }
 }

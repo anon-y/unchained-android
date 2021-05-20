@@ -46,38 +46,48 @@ class ODWelcomeFragment : Fragment() {
 
         _binding = FragmentOdWelcomeBinding.inflate(inflater, container, false)
 
-        binding.bOpenLink.setOnClickListener {
-            openExternalWebPage(ORION_HOME)
-        }
-
-        binding.bPasteApiKey.setOnClickListener {
-            val pasteText = getClipboardText()
-            binding.tiPrivateCode.setText(pasteText, TextView.BufferType.EDITABLE)
-        }
-
-        binding.bCheckKey.setOnClickListener {
-            val code = binding.tiPrivateCode.text.toString()
-            if (code.length > 10)
-                viewModel.checkAndSaveCredentials(code)
-            else
-                context?.showToast(R.string.invalid_token)
-        }
-
         setup()
-
-        // metti un overlay sopra a questo fragment e poi toglilo se la chiave non c'è o non è valida
-        // vai automaticamente all altro fragment se invece è valida
+        
         return binding.root
     }
 
     private fun setup() {
-        // maybe an event is not needed, once we have the user we shouldn't come back to this screen
-        viewModel.userLiveData.observe(viewLifecycleOwner) {
-            // check user status?
-            it.getContentIfNotHandled()?.let {
-                val action = ODWelcomeFragmentDirections.actionSearchDestToSearchFragment()
-                findNavController().navigate(action)
+
+        if (viewModel.checkCurrentCredentials()) {
+            val action = ODWelcomeFragmentDirections.actionSearchDestToSearchFragment()
+            findNavController().navigate(action)
+        } else {
+
+            binding.bOpenLink.setOnClickListener {
+                openExternalWebPage(ORION_HOME)
             }
+
+            binding.bPasteApiKey.setOnClickListener {
+                val pasteText = getClipboardText()
+                binding.tiPrivateCode.setText(pasteText, TextView.BufferType.EDITABLE)
+            }
+
+            binding.bCheckKey.setOnClickListener {
+                val code = binding.tiPrivateCode.text.toString()
+                if (code.length > 10)
+                    viewModel.checkAndSaveCredentials(code)
+                else
+                    context?.showToast(R.string.invalid_token)
+            }
+
+            // maybe an event is not needed, once we have the user we shouldn't come back to this screen
+            viewModel.userLiveData.observe(viewLifecycleOwner) {
+                // check user status?
+                it.getContentIfNotHandled()?.let { user ->
+                    if (user.result.status == "success") {
+                        val action = ODWelcomeFragmentDirections.actionSearchDestToSearchFragment()
+                        findNavController().navigate(action)
+                    } else {
+                        context?.showToast(R.string.invalid_token)
+                    }
+                }
+            }
+
         }
     }
 }

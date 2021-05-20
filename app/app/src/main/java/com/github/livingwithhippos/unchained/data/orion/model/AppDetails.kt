@@ -58,7 +58,7 @@ data class ODAccessTime(
     @Json(name = "updated")
     val updated: Int,
     @Json(name = "accessed")
-    val accessed: Int
+    val accessed: Int?
 )
 /*
 {
