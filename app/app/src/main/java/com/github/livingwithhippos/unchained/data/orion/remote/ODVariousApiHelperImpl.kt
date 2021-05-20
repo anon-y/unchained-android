@@ -5,5 +5,5 @@ import retrofit2.Response
 import javax.inject.Inject
 
 class ODVariousApiHelperImpl @Inject constructor(private val odVariousApi: ODVariousApi) : ODVariousApiHelper {
-    override suspend fun getUser(userApiKey: String): Response<ODUser> = odVariousApi.getUser(userKey = userApiKey)
+    override suspend fun getUser(userKey: String): Response<ODUser> = odVariousApi.getUser(userKey = userKey)
 }

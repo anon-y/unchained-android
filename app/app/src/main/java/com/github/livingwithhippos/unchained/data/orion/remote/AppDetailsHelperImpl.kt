@@ -5,5 +5,5 @@ import retrofit2.Response
 import javax.inject.Inject
 
 class AppDetailsHelperImpl  @Inject constructor(private val appDetailsApi: AppDetailsApi) : AppDetailsHelper {
-    override suspend fun getDetails(userApiKey: String): Response<AppDetails> = appDetailsApi.getDetails(userKey = userApiKey)
+    override suspend fun getDetails(userKey: String): Response<AppDetails> = appDetailsApi.getDetails(userKey = userKey)
 }

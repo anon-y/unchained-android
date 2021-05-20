@@ -3,6 +3,7 @@ package com.github.livingwithhippos.unchained.utilities.extension
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.ClipData
+import android.content.ClipDescription.MIMETYPE_TEXT_HTML
 import android.content.ClipDescription.MIMETYPE_TEXT_PLAIN
 import android.content.ClipboardManager
 import android.content.Context
@@ -83,9 +84,10 @@ fun Fragment.copyToClipboard(label: String, text: String) {
 fun Fragment.getClipboardText(): String {
     val clipboard = requireContext().getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
     var text = ""
-    if (clipboard.hasPrimaryClip() && clipboard.primaryClipDescription?.hasMimeType(
-            MIMETYPE_TEXT_PLAIN
-        ) == true
+    val description = clipboard.primaryClipDescription
+    if (clipboard.hasPrimaryClip()
+        && description != null
+        && (description.hasMimeType( MIMETYPE_TEXT_PLAIN ) || description.hasMimeType( MIMETYPE_TEXT_HTML ))
     ) {
         val item = clipboard.primaryClip!!.getItemAt(0)
         text = item.text.toString()
@@ -124,7 +126,12 @@ fun String.makeSpannableLink(context: Context): SpannableString {
     val link = SpannableString(this)
     link.setSpan(UnderlineSpan(), 0, link.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
     val colorSecondary = context.getThemeColor(R.attr.colorSecondary)
-    link.setSpan(ForegroundColorSpan(colorSecondary), 0, link.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+    link.setSpan(
+        ForegroundColorSpan(colorSecondary),
+        0,
+        link.length,
+        Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+    )
     return link
 }
 
@@ -132,12 +139,14 @@ fun String.makeSpannableLink(context: Context): SpannableString {
 /**
  * this function can be used to create a new context with a particular locale.
  * It must be used while overriding Activity.attachBaseContext like this:
+```kotlin
 override fun attachBaseContext(base: Context?) {
-if (base != null)
-super.attachBaseContext(getUpdatedLocaleContext(base, "en"))
-else
-super.attachBaseContext(null)
+    if (base != null)
+        super.attachBaseContext(getUpdatedLocaleContext(base, "en"))
+    else
+        super.attachBaseContext(null)
 }
+```
  * it must be applied to all the activities or added to a BaseActivity extended by them
  */
 fun Activity.getUpdatedLocaleContext(context: Context, language: String): Context {
