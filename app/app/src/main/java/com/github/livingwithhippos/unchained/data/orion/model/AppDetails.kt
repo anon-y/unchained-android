@@ -32,7 +32,7 @@ data class ODAppData(
     @Json(name = "status")
     val status: String,
     @Json(name = "time")
-    val time: ODTime,
+    val accessTime: ODAccessTime,
     @Json(name = "type")
     val type: String
 )
@@ -52,11 +52,13 @@ data class Popularity(
 )
 
 @JsonClass(generateAdapter = true)
-data class ODTime(
+data class ODAccessTime(
     @Json(name = "added")
     val added: Int,
     @Json(name = "updated")
-    val updated: Int
+    val updated: Int,
+    @Json(name = "accessed")
+    val accessed: Int
 )
 /*
 {

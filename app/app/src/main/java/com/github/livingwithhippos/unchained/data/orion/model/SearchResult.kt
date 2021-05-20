@@ -60,7 +60,7 @@ data class Movie(
     @Json(name = "popularity")
     val popularity: Popularity,
     @Json(name = "time")
-    val time: ODTime
+    val accessTime: ODAccessTime
 )
 
 @JsonClass(generateAdapter = true)
@@ -92,7 +92,7 @@ data class OrionStream(
     @Json(name = "subtitle")
     val subtitle: Subtitle,
     @Json(name = "time")
-    val time: ODTime,
+    val accessTime: ODAccessTime,
     @Json(name = "video")
     val video: Video
 )

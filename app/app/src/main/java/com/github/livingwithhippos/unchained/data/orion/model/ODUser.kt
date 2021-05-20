@@ -22,13 +22,13 @@ data class ODUserData(
     @Json(name = "key")
     val key: String,
     @Json(name = "email")
-    val email: String,
+    val email: String?,
     @Json(name = "type")
     val type: String,
     @Json(name = "status")
     val status: String,
     @Json(name = "time")
-    val time: ODTime,
+    val accessTime: ODAccessTime,
     @Json(name = "subscription")
     val subscription: Subscription,
     @Json(name = "requests")
@@ -40,7 +40,7 @@ data class Subscription(
     @Json(name = "package")
     val packageX: Package,
     @Json(name = "time")
-    val time: ODTime
+    val accessTime: ODDurationTime
 )
 
 @JsonClass(generateAdapter = true)
@@ -82,11 +82,13 @@ data class Package(
 @JsonClass(generateAdapter = true)
 data class Limit(
     @Json(name = "duration")
-    val duration: Any,
+    val duration: Long,
     @Json(name = "streams")
     val streams: Int,
     @Json(name = "hashes")
-    val hashes: Int
+    val hashes: Int,
+    @Json(name = "containers")
+    val containers: Int
 )
 
 @JsonClass(generateAdapter = true)
@@ -107,4 +109,12 @@ data class ODUserQuota(
     val total: Int,
     @Json(name = "daily")
     val daily: Daily
+)
+
+@JsonClass(generateAdapter = true)
+data class ODDurationTime(
+    @Json(name = "started")
+    val started: Long,
+    @Json(name = "expiration")
+    val expiration: Long
 )
