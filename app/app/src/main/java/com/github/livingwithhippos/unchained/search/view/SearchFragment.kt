@@ -37,15 +37,12 @@ class SearchFragment : UnchainedFragment() {
 
     private fun setup() {
 
-        binding.button.setOnClickListener {
-            viewModel.fetchAppDetails()
+        // search button listener
+        binding.tfSearch.setEndIconOnClickListener {
+            viewModel.search(
+                query = binding.tiSearch.text.toString(),
+                type = if (binding.rbMovie.isChecked) "movie" else "show"
+            )
         }
-
-        viewModel.appDetailsLiveData.observe(viewLifecycleOwner, EventObserver { details ->
-            details?.let {
-                val text = (it.name + " " + it.appData.description)
-                binding.text.text = text
-            }
-        })
     }
 }

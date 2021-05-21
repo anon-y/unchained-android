@@ -23,7 +23,7 @@ class ODWelcomeViewModel @Inject constructor(
 
     fun checkAndSaveCredentials(userApiKey: String){
         viewModelScope.launch {
-            val user = getUser(userApiKey)
+            val user = variousRepository.getUser(userApiKey)
             if (user != null)
                 saveCredentials(userApiKey)
 
@@ -41,12 +41,6 @@ class ODWelcomeViewModel @Inject constructor(
             putString(KEY_ORION_API, userApiKey)
             apply()
         }
-    }
-
-    suspend fun getUser(userApiKey: String): ODUser? {
-        val user = variousRepository.getUser(userApiKey)
-
-        return user
     }
 
     companion object {

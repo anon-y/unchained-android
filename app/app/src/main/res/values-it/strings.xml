@@ -231,4 +231,6 @@
     <string name="search_files">Cerca Files</string>
     <string name="api_key">Chiave API</string>
     <string name="check_key">Controlla Chiave</string>
+    <string name="movie">Film</string>
+    <string name="show">Serie TV</string>
 </resources>

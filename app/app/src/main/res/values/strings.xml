@@ -439,4 +439,7 @@
     <string name="od_welcome_message">Orion is a file indexer for the Torrent, Hosting and Usenet networks. An API key is required for its use and a free plan is available. For the API key and more information check orionoid.com</string>
     <string name="api_key">API Key</string>
     <string name="check_key">Check Key</string>
+    <string name="orion" translatable="false">Orion</string>
+    <string name="movie">Movie</string>
+    <string name="show">Show</string>
 </resources>
