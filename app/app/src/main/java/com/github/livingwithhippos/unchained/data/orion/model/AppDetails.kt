@@ -48,7 +48,7 @@ data class Popularity(
     @Json(name = "count")
     val count: Int,
     @Json(name = "percent")
-    val percent: Int
+    val percent: Double
 )
 
 @JsonClass(generateAdapter = true)

@@ -20,6 +20,8 @@ class StreamSearchRepository @Inject constructor(private val streamSearchHelper:
      * @param seeds the minimum seeds for torrents/magnets, default 10
      * @param videoQuality the accepted video quality separated by commas, like "hd720,hd1080"
      * @param audioLanguages the stream language in two letters country codes. Default "en" for english
+     *
+     * @return a [SearchResult] item with all the results
      */
     suspend fun searchStreamQuery(
         userKey: String = ORION_USER_KEY,
@@ -30,6 +32,7 @@ class StreamSearchRepository @Inject constructor(private val streamSearchHelper:
         videoQuality: String = DEFAULT_STREAM_QUALITY,
         audioLanguages: String = DEFAULT_STREAM_LANGUAGE
     ): SearchResult? {
+        // todo: use [Either]?
         val searchResponse = safeApiCall(
         call = {
             streamSearchHelper.searchStreamQuery(

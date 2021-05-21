@@ -10,9 +10,7 @@ data class SearchResult(
     @Json(name = "name")
     val name: String,
     @Json(name = "result")
-    val result: StreamResult,
-    @Json(name = "version")
-    val version: String
+    val result: StreamResult
 )
 
 @JsonClass(generateAdapter = true)
@@ -32,13 +30,13 @@ data class SearchData(
 @JsonClass(generateAdapter = true)
 data class StreamResult(
     @Json(name = "description")
-    val description: String,
+    val description: String?,
     @Json(name = "message")
-    val message: String,
+    val message: String?,
     @Json(name = "status")
     val status: String,
     @Json(name = "type")
-    val type: String
+    val type: String?
 )
 
 @JsonClass(generateAdapter = true)
